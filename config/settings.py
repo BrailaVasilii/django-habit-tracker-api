@@ -70,6 +70,14 @@ DATABASES = {
     }
 }
 
+# Use SQLite for tests to avoid PostgreSQL permission issues
+import sys
+if 'pytest' in sys.modules:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ':memory:'
+    }
+
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},

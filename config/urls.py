@@ -17,7 +17,12 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # API endpoints
     path('api/users/', include('users.urls', namespace='users')),
+    path('api/habits/', include('habits.urls', namespace='habits')),
+
+    # API Documentation
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='swagger'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='redoc'),
 ]
